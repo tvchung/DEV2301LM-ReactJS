@@ -1,0 +1,46 @@
+Các bước thực hiện
+1. Tải thư mục Student Managerment Template
+2. Giải nén (ReactJS Basic: 
+                Css/style.css
+                basic_react.html)
+3. Tạo ứng dụng ReactJS: student-manager 
+4. Phân tích giao diện từ trang basic_react.html
+    - Phân chia thành 6 component:
+        + App.js 
+        + Control.js
+        + StudentList.js 
+        + Student.js 
+        + Form.js 
+5. Mở https://transform.tools/html-to-jsx
+    - Mở file: basic_react.html -> copy và chuyển sang jsx 
+    - Copy nội dung vào component App.js 
+    - Chuyển function App -> thành class App componet 
+6. Liên kế css 
+    - Copy thư mục css vào public
+    - Thêm liên kết trên trang index.html 
+        <link rel="stylesheet" href="css/style.css">
+7. Phân chia các class component 
+    7.1: App 
+    7.2: Control 
+        - Cắt (chuyển) phần card-header từ App sang Control 
+        - Mở App.js 
+            + Thêm component Control :  <Control />
+    7.3: Tạo StudentList component (StudentList.js)
+        - Cắt (Chuyển) Phàn card-body sang StudentList
+        - Mở App.js 
+            + Thêm component StudentList (StudentList.js)
+    7.4: Tạo Form component (Form.js)
+        - Cắt (Chuyển) phần card chuyển sang Form 
+        - Mở App.js 
+            + Thêm component Form (Form.js)
+    7.5: Tạo Student component (Student.js)
+        - Cắt (Chuyển) tr trong tbody của StudentList vào Student 
+        - Mở StudentList.js 
+            + Thêm Student component vào chỗ vừa căts
+8. Tổ chức dữ liệu trong App.js 
+    - Dữ liệu sẽ tổ chức dưới dạng mảng các đối tượng
+    - Mội một student là một đối tượng trong mảng
+    - Dữ liệu được tổ chức trong state của class component App 
+....
+
+
