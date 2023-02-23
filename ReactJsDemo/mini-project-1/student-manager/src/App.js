@@ -25,7 +25,9 @@ class App extends Component {
   // Add -> show form
   handleAdd = ()=>{
     this.setState({
-      isToggle:true
+      isToggle:true,
+      actionName:"Add",
+      student:{}
     })
   }
   // xem
@@ -59,11 +61,39 @@ class App extends Component {
       students:students
     })
   }
+  // Thêm mới dữ liệu
+  handleAddSave = (studentAddSave)=>{
+    // Thêm mới dữ liệu trong state với students
+    let {students} = this.state; // lấy dữ liệu gốc trong state
+    // Thêm vào cuối mảng students
+    students.push(studentAddSave);
+    // cập nhật lại state cho App
+    this.setState({
+      students:students
+    })
+  }
+  // Xóa dữ liệu
+  handleDelete = (student)=>{
+    console.log(student);
+    // Lấy dữ liệu cũ
+    let {students} = this.state; // lấy dữ liệu gốc trong state
+    // Tìm kiếm đến đối tượng sinh viên cần xóa
+    students.forEach((st,index)=>{
+      if(st.studentId === student.studentId){
+        students.splice(index,1);
+      }
+    })
+     // cập nhật lại state cho App
+     this.setState({
+      students:students
+    })
+  }
   render() {
     let elementForm = this.state.isToggle?
         <Form   student={this.state.student} 
                 actionName={this.state.actionName}
-                handleUpdate={this.handleUpdate} />:"";
+                handleUpdate={this.handleUpdate} 
+                handleAddSave={this.handleAddSave}/>:"";
        
     return (
       <div className="container-fluid">
@@ -76,6 +106,7 @@ class App extends Component {
               <StudentList students = {this.state.students}
                 handleView={this.handleView} 
                 handleEdit={(student)=>this.handleEdit(student)}
+                handleDelete = {(student)=>this.handleDelete(student)}
                 />
             </div>
           </div>

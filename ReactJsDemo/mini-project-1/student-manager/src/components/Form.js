@@ -97,9 +97,18 @@ export default class Form extends Component {
           birthPlace:this.state.birthPlace,
           address:this.state.address
         }
-
-        // console.log("Student Update:",studentUpdate);
         this.props.handleUpdate(studentUpdate)
+      }else if(this.props.actionName==="Add"){
+        let studentAddSave = {
+          studentId:this.state.studentId,
+          studentName:this.state.studentName,
+          age:this.state.age,
+          sex:this.state.sex,
+          birthDate:this.state.birthDate,
+          birthPlace:this.state.birthPlace,
+          address:this.state.address
+        }
+        this.props.handleAddSave(studentAddSave)
       }
 
       event.preventDefault()
@@ -113,6 +122,12 @@ export default class Form extends Component {
       elementButton = (
         <button type="submit" class="btn btn-primary me-2"  onClick={this.handleSubmit}     >
           Update
+        </button>
+      );
+    }else if(actionName==="Add"){
+      elementButton = (
+        <button type="submit" class="btn btn-primary me-2"  onClick={this.handleSubmit}     >
+          Add
         </button>
       );
     }

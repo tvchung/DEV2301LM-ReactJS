@@ -13,6 +13,10 @@ export default class StudentList extends Component {
     this.props.handleEdit(student);
   }
  
+  // Xóa
+  handleDelete = (student)=>{
+    this.props.handleDelete(student)
+  }
   render() {
       // Lấy dữ liệu từ props 
       let {students} = this.props;
@@ -22,6 +26,7 @@ export default class StudentList extends Component {
           return <Student key={key} index={key} student ={item} 
             handleView={(student)=>this.handleView(student)}
             handleEdit = {(student)=>this.handleEdit(student)}
+            handleDelete = {(student)=>this.handleDelete(student)}
           />;
       });
     return (

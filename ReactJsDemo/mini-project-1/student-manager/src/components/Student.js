@@ -10,6 +10,10 @@ export default class Student extends Component {
   handleEdit = (student)=>{
     this.props.handleEdit(student);
   }
+  // Xóa
+  handleDelete = (student)=>{
+    this.props.handleDelete(student);
+  }
   render() {
       // lấy dữ liệu từ props để hiển thị
     let {student, index} = this.props;
@@ -37,7 +41,9 @@ export default class Student extends Component {
               >
               Sửa
             </button>
-            <button type="button" className="btn btn-success btn-icon-text">
+            <button type="button" className="btn btn-success btn-icon-text"
+               onClick={()=>this.handleDelete(student)}
+              >
               Xóa
             </button>
           </div>
