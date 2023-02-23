@@ -18,7 +18,9 @@ class App extends Component {
       ,isToggle:false
       ,student:""
       ,actionName:""
-
+      ,searchData:""
+      ,orderField:"" // cột cần sắp
+      ,orderBy:""  // sẮp tăng hay giảm
     }
   }
   // arrow function 
@@ -44,6 +46,14 @@ class App extends Component {
       isToggle:true,
       student:student,
       actionName:"Update"
+    })
+  }
+
+  handleAction = (isToggle,actionName,studentSelected) =>{
+    this.setState({
+      isToggle:isToggle,
+      actionName:actionName,
+      student:studentSelected
     })
   }
   // Cập nhật dữ liệu từ Form
@@ -88,22 +98,68 @@ class App extends Component {
       students:students
     })
   }
+  // xử lý cho trường hợp tìm kiếm
+  handleSearch = (searchData)=>{
+    // console.log("Control:",searchData);
+    this.setState({
+      searchData:searchData
+    })
+    // console.log("state:", this.state.searchData);
+  }
+  // Xử lý cho sắp xếp
+  handleSort = (orderField, orderBy)=>{
+      this.setState({
+        orderField:orderField,
+        orderBy:orderBy
+      })
+  }
   render() {
     let elementForm = this.state.isToggle?
         <Form   student={this.state.student} 
                 actionName={this.state.actionName}
                 handleUpdate={this.handleUpdate} 
                 handleAddSave={this.handleAddSave}/>:"";
-       
+    // xử lý dữ liệu khi có điều kiện lọc
+    let students = [];
+    if(this.state.searchData !==""){
+      // thực hiện tìm những dữ liệu trên cột studentName có giá trị chứa searchData
+      this.state.students.forEach(st=>{
+        if(st.studentName.toLocaleLowerCase().includes(this.state.searchData.toLocaleLowerCase())){
+          students.push(st);
+        }
+      });
+    }else{
+      students = [...this.state.students];
+    }
+    // Thực hiện sắp xếp nếu có
+    if(this.state.orderField === "studentName"){
+      if(this.state.orderBy ==="ASC"){
+        students.sort((a,b)=>(a.studentName>b.studentName)?1:(a.studentName>b.studentName)?-1:0);
+      }else{
+        students.sort((a,b)=>(a.studentName>b.studentName)?-1:(a.studentName>b.studentName)?1:0);
+      }
+    }
+    // theo tuổi nếu có
+    if(this.state.orderField === "age"){
+      if(this.state.orderBy==="ASC"){
+        students.sort((x,y)=>x.age-y.age);
+      }else{
+        students.sort((x,y)=>y.age-x.age);
+      }
+    }
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-7 grid-margin stretch-card">
             <div className="card">
               {/* Control Component  */}
-              <Control handleAdd = {this.handleAdd}/>
+              <Control handleAdd = {this.handleAdd} 
+                        handleSearch={this.handleSearch}
+                        handleSort={this.handleSort}/>
               {/* Student List components */}
-              <StudentList students = {this.state.students}
+              <StudentList 
+                // students = {this.state.students}
+                students = {students}
                 handleView={this.handleView} 
                 handleEdit={(student)=>this.handleEdit(student)}
                 handleDelete = {(student)=>this.handleDelete(student)}
