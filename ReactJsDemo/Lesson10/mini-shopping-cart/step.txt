@@ -1,0 +1,46 @@
+Shopping cart project
+1. Tạo ứng dụng reactjs, cài đặt redux , react-redux 
+2. Phân tích thành phần giao diện, phân chia các component
+    - App
+        + Title
+        + ListProduct
+            + Product 
+        + Cart 
+            + CartItem 
+            + CartInfo
+            + Notify
+3. Phân tích và xây dựng các reducers
+    - index.js
+    - listProduct.js 
+    - cart.js 
+    - notify.js 
+4. Phân tích và xây dựng các actions
+    - ListProduct: act_list_product
+    - BuyItem: act_buy_item
+    - UpdateItem: act_update_item
+    - RemoveItem: act_remove_item
+    - ChangeNotify: act_change_notify
+5. Tạo các constants cho ứng dụng
+    - actionTypes.js 
+        định nghĩa các hằng cho các action tương ứng
+    - messages.js 
+        định nghĩa các nội dung thông báo cho các action 
+6. Xây dựng nghiệp vụ cho các actions 
+7. Xây dựng các reducer và combine
+    - listProduct.js => khởi tạo dữ liệu cho listProduct
+    - notify => tạo reducer xử lý cho chức năng thông báo
+    - cart => lưu trữ thông tin giỏ hàng
+        + bổ sung constants -> localStorage 
+        + BuyItem -> lưu dữ liệu vào localStorage (product, quantity)
+    - index.js 
+        => reducer 
+8. tạo store cho ứng dựng
+    -  sử dụng createStore từ redux 
+9. mapStateToProps
+    - connect dữ liệu trong store với các component (views)
+    -> sử dụng hàm connect từ thư viện 'react-redux'
+    -> cú pháp:
+        connect(mapStateToProps,mapDispathToProps)(components)
+    - sử dụng props trên component để hiển thị
+
+    

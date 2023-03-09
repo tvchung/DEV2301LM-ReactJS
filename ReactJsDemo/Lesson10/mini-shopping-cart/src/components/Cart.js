@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import CartInfo from "./CartInfo";
 import CartItem from "./CartItem";
 import Notify from "./Notify";
-
-export default class Cart extends Component {
+import {connect} from 'react-redux';
+class Cart extends Component {
   render() {
+    // lấy dữ liệu từ props (cart)
+    let {cart} = this.props;
+    let elementCartItem = cart.map((item,key)=>{
+      return <CartItem key={key} item={item} index={key+1} />;
+    })
     return (
       <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div className="panel panel-danger">
@@ -25,11 +30,11 @@ export default class Cart extends Component {
               </thead>
               <tbody id="my-cart-body">
                 {/* CART BODY */}
-                <CartItem />
+                {elementCartItem}
               </tbody>
               <tfoot id="my-cart-footer">
                 {/* CART FOOTER */}
-                <CartInfo />
+                <CartInfo cart={this.props.cart} />
               </tfoot>
             </table>
           </div>
@@ -39,3 +44,13 @@ export default class Cart extends Component {
     );
   }
 }
+
+// map state từ store đến component (Cart) thông qua thuộc tính cart
+const mapStateToProps = (state)=>{
+  return {
+    cart:state.cart,
+  }
+}
+
+
+export default connect(mapStateToProps,null)(Cart);
