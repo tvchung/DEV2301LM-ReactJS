@@ -4,7 +4,7 @@ export default class CartItem extends Component {
   render() {
     // lấy dữ liệu từ props (item)
     let {item, index} = this.props;
-
+    
     return (
       <tr>
         <th scope="row">{index}</th>
