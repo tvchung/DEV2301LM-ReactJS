@@ -1,0 +1,58 @@
+Todo List Project: React-Hook
+1. Create project: mini-project-3
+2. Phân tích giao diện, xây dựng các function component
+3. Chuyển giao diện html - > Jsx -> Chi các component 
+App
+    - Title
+    - Control
+    - Form
+    - ListTask
+    - Task 
+3.1: function Title 
+3.2: Function Control 
+3.3: Function Form 
+3.4: Function ListTask
+3.5: Function Task 
+
+4. Xử lý các chức năng 
+4.1: Chức năng show list task 
+- App 
+    + Tạo mock data : list task  (listTask)
+    + App -> listTask --> ListTask 
+- ListTask: show data 
+    + ListTask --> Task (show item data)
+4.2: Chức năng toggle Form (Ẩn hiện form thêm task )
+- App:
+    + Tạo state isToggle điêuù khiển ẩn hiện form (true/false)
+- Control:
+    + click button (Add Task): update isToggle --> App 
+4.3: Chức năng search (Control conponent)
+- Control:
+    + Nhập dữ liệu search - > Click button (Go)
+    + Gửi dữ liệu search từ Control -> App 
+- App:
+    + Thực hiện search (state: listTask)
+    + re-render ListTask component
+4.4: Chức năng add Task
+- Form:
+    + Nhập dữ liệu Task 
+    + Click button (Submit):
+        .Gửi dữ liệu công việc từ Form - > App 
+        .App: Thêm Task -> listTask 
+        .re-render ListTask component
+    + Click button (Cancel) -> xóa dữ liệu trên task name, set level
+4.5: Chức năng Edit Task 
+- Task:
+    + CLick button (Edit)
+    + Chuyển dữ liệu từ Task component -> Form component
+- Form:
+    + Hiển thị dữ liệu thông Task cần cập nhật
+    + Cho phép người dùng sửa dữ liệu Task
+    + Click Submit -> Gửi dữ liệu cập nhật về App -> Cập nhật lại listTask
+    + re-render ListTask component
+4.6: Chức năng Delete Task 
+- Task:
+    + click button (Delete)
+    + Chuyển  Task (hoặc taskId) từ Task -> App 
+- App:
+    + Xóa Task (Hoặc xóa Task ứng với taskId) trong listTask 
