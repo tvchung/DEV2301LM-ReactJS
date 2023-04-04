@@ -1,0 +1,2 @@
+Sử dụng menu ở bài labguide04 - bài thực hành 1
+- Mỗi mục menu tạo một component tương ứng, thể hiện như ví dụ demo 
